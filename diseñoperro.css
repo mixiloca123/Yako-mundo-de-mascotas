@@ -1,0 +1,84 @@
+/* Sección de la Galería de Productos */
+.productos-destacados {
+    padding: 40px 5%;
+    background-color: #fcfcfc;
+    text-align: center;
+}
+
+.productos-destacados h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 30px;
+    font-weight: 800;
+}
+
+/* Rejilla adaptativa automática */
+.productos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Estilo individual de cada Tarjeta de producto */
+.producto-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    border: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+}
+
+.producto-card:hover {
+    transform: translateY(-5px);
+}
+
+.producto-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.producto-info {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+.producto-info h3 {
+    font-size: 1.1rem;
+    color: #444;
+    margin-bottom: 10px;
+    font-weight: 600;
+    min-height: 44px; /* Mantiene alineados los botones aunque el texto varíe */
+}
+
+.producto-info .precio {
+    font-size: 1.3rem;
+    color: #27ae60;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+/* Botón de compra integrado a tu lógica de carrito */
+.btn-agregar-carrito {
+    background: #ff9800; /* Puedes cambiar al color principal de tu marca */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    width: 100%;
+}
+
+.btn-agregar-carrito:hover {
+    background: #e68a00;
+}

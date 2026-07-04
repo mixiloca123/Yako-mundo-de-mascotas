@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<style>
+/* Estilos generales */
+.contacto-seccion {
+  background-color: #00807f; /* Color verde de la imagen */
+  color: white;
+  padding: 60px 20px;
+  font-family: sans-serif;
+}
+
+.contenedor {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  margin: 0 auto;
+  gap: 50px;
+}
+
+.info, .formulario {
+  flex: 1 1 400px;
+}
+
+/* Estilos de los textos */
+.info h3 { margin-bottom: 10px; font-size: 1.2rem; }
+.info p { margin-bottom: 20px; line-height: 1.5; opacity: 0.9; }
+
+/* Estilos del Formulario */
+.formulario h3 { margin-bottom: 25px; }
+
+.formulario input, .formulario textarea {
+  display: block;
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  color: white;
+  padding: 12px 0;
+  margin-bottom: 20px;
+  outline: none;
+}
+
+.formulario input::placeholder, 
+.formulario textarea::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.politica-privacidad {
+  font-size: 0.8rem;
+  margin-top: 10px;
+}
+</style>
+</head>
+<body>
+
+<section class="contacto-seccion">
+  <div class="contenedor">
+    <div class="info">
+      <h3>Encuéntranos En</h3>
+      <p>chia  Carrera 15 # 11-11</p>
+      
+      <h3>Escríbenos</h3>
+      <p>3224022039<br>
+
+      contacto@dogiamour.co</p>
+      
+      <h3>Abrimos</h3>
+      <p>Lunes a domingo<br>9:30 am - 6:30 pm</p>
+    </div>
+
+    <form class="formulario">
+      <h3>¿Tienes Preguntas?<br>¿Necesitas Ayuda?</h3>
+      <input type="text" placeholder="Nombre y Apellido" required>
+      <input type="tel" placeholder="Teléfono">
+      <input type="email" placeholder="Email" required>
+      <textarea placeholder="Mensaje" rows="3"></textarea>
+      
+      <!-- Espacio para el reCAPTCHA -->
+      <div style="background: white; color: black; padding: 10px; margin-bottom: 10px; width: 250px;">
+        <input type="checkbox"> No soy un robot
+      </div>
+
+      <div class="politica-privacidad">
+        <input type="checkbox" id="acepto" required>
+        <label for="acepto">Al enviar el formulario acepto nuestra Política de Privacidad</label>
+      </div>
+    </form>
+  </div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yako Mundo Mascotas | Tienda Premium</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        
+        /* Estilos específicos para la cuadrícula estricta de 3 en 3 */
+        .productos-grid-fijo {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        /* Ajuste responsivo para pantallas pequeñas */
+        @media (max-width: 950px) {
+            .productos-grid-fijo {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 600px) {
+            .productos-grid-fijo {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* CLASES NUEVAS PARA EL BOTÓN "CARGAR MÁS" */
+        .producto-card.oculto {
+            display: none !important;
+        }
+
+        /* Contenedor del botón abajo de la cuadrícula */
+        .contenedor-cargar-mas {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        /* Estilo estético para el botón */
+        .btn-cargar-mas {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 12px 35px;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .btn-cargar-mas:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+
+        /* CORRECCIÓN: Banner alargado a los lados manteniendo proporciones */
+        .contenedor-banner-estatico {
+            width: 100%;
+            max-width: 100%; 
+            margin: 30px 0; 
+            padding: 0; 
+            box-sizing: border-box;
+            overflow: hidden;
+            display: block;
+        }
+
+        .contenedor-banner-estatico img {
+            width: 100%;
+            max-height: 250px; 
+            height: auto;
+            display: block;
+            object-fit: cover; 
+            object-position: center; 
+            border-radius: 0; 
+        }
+
+        /* Ajuste extra para banners en pantallas pequeñas */
+        @media (max-width: 768px) {
+            .contenedor-banner-estatico img {
+                max-height: 150px; 
+            }
+        }
+
+        /* Estilo para resaltar visualmente el botón de filtro que está seleccionado */
+        .icon-card {
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .icon-card:hover {
+            transform: scale(1.05);
+        }
+        .icon-card.activo {
+            border: 3px solid #28a745;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo-wrapper">
+            <img src="YAKO_MUNDO_DE_MASCOYTAS_-removebg-preview.png" alt="Logo" class="brand-logo-img">
+            <div class="logo">YAKO<span>MUNDO</span>MASCOTAS</div>
+        </div>
+
+        <div class="search-container">
+            <input type="text" id="inputBuscador" placeholder="¿Qué necesita tu mejor amigo hoy?">
+            <i class="fas fa-search" onclick="realizarBusqueda()" style="cursor:pointer;"></i>
+        </div>
+        
+        <ul>
+            <li><a href="MI CUENTA.HTML">Mi Cuenta</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+            <li>
+                <div class="cart-info" onclick="toggleCart()" style="cursor: pointer;">
+                    <i class="fas fa-shopping-basket"></i> 
+                    <span id="count">0</span> | $<span id="total">0</span>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="menu-categorias">
+        <div class="categoria-item">
+            PERROS
+            <div class="mega-menu">
+                <div class="menu-col">
+                    <h4>Alimentos</h4>
+                    <ul>
+                        <li><a href="alimentos-perros.html">Seco</a></li>
+                        <li><a href="barf-perros.html">Humedo</a></li>
+                    </ul>
+                </div>
+                <div class="menu-col">
+                    <h4>Higiene</h4>
+                    <ul>
+                        <li><a href="shampoo-jabon.html">Shampoo y Jabón</a></li>
+                        <li><a href="panales-desechables.html">Pañales Desechables</a></li>
+                        <li><a href="cepillos-dentales.html">Cepillos Dentales</a></li>
+                        <li><a href="eliminador-olores.html">Eliminador Olores</a></li>
+                    </ul>
+                </div>
+                <div class="menu-col">
+                    <h4>Accesorios</h4>
+                    <ul>
+                        <li><a href="pecheras-arneses.html">Pecheras y Arneses</a></li>
+                        <li><a href="collares-cuero.html">Collares de Cuero</a></li>
+                        <li><a href="placas-identificacion.html">Placas de Identificación</a></li>
+                        <li><a href="guacales-viaje.html">Guacales de Viaje</a></li>
+                    </ul>
+                </div>
+                <div class="menu-col">
+                    <h4>Juguetes</h4>
+                    <ul>
+                        <li><a href="kongs-interactivos.html">Kongs e Interactivos</a></li>
+                        <li><a href="pelotas-caucho.html">Pelotas de Caucho</a></li>
+                        <li><a href="lazos-traccion.html">Lazos de Tracción</a></li>
+                        <li><a href="peluches-sonido.html">Peluches con Sonido</a></li>
+                    </ul>
+                </div>
+                <div class="menu-col">
+                    <h4>Snacks</h4>
+                    <ul>
+                        <li><a href="desparasitantes.html">Bocaditos</a></li>
+                        <li><a href="multivitaminicos.html">Huesos y carnazas para Perros</a></li>
+                        <li><a href="proteccion-articular.html">Galletas</a></li>
+                        <li><a href="proteccion-articular.html">cremosos</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="categoria-item">GATOS
+            <div class="mega-menu">
+                <div class="menu-col">
+                    <h4>Nutrición</h4>
+                    <ul>
+                        <li><a href="#">Alimento Seco</a></li>
+                        <li><a href="#">Sobres y Snacks</a></li>
+                        <li><a href="#">Catnip y Hierbas</a></li>
+                        <li><a href="#">Leche Especial</a></li>
+                    </ul>
+                </div>
+                <div class="menu-col">
+                    <h4>Cuidado Arena</h4>
+                    <ul>
+                        <li><a href="#">Arena de Bentonita</a></li>
+                        <li><a href="#">Arena de Madera</a></li>
+                        <li><a href="#">Areneras Cerradas</a></li>
+                        <li><a href="#">Palas y Tapetes</a></li>
+                    </ul>
+                </div>
+                <div class="menu-col">
+                    <h4>Rascadores</h4>
+                    <ul>
+                        <li><a href="#">Gimnasios Multinivel</a></li>
+                        <li><a href="#">Rascadores de Cartón</a></li>
+                        <li><a href="#">Postes de Sísal</a></li>
+                    </ul>
+                </div>
+                <div class="menu-col">
+                    <h4>Accesorios</h4>
+                    <ul>
+                        <li><a href="#">Collares Antipérdida</a></li>
+                        <li><a href="#">Fuentes de Agua</a></li>
+                        <li><a href="#">Hamacas de Ventana</a></li>
+                    </ul>
+                </div>
+                <div class="menu-col">
+                    <h4>Salud</h4>
+                    <ul>
+                        <li><a href="#">Control de Bolas de Pelo</a></li>
+                        <li><a href="#">Pipetas Antipulgas</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="categoria-item">HÁMSTER
+            <div class="mega-menu">
+                <div class="menu-col">
+                    <h4>Hábitat</h4>
+                    <ul>
+                        <li><a href="#">Jaulas de Acrílico</a></li>
+                        <li><a href="#">Tubos y Conectores</a></li>
+                        <li><a href="#">Sustrato de Papel</a></li>
+                    </ul>
+                </div>
+                <div class="menu-col">
+                    <h4>Alimentación</h4>
+                    <ul>
+                        <li><a href="#">Semillas Mixtas</a></li>
+                        <li><a href="#">Frutas Deshidratadas</a></li>
+                        <li><a href="#">Bloques Minerales</a></li>
+                    </ul>
+                </div>
+                <div class="menu-col">
+                    <h4>Diversión</h4>
+                    <ul>
+                        <li><a href="#">Ruedas Silenciosas</a></li>
+                        <li><a href="#">Esferas de Ejercicio</a></li>
+                        <li><a href="#">Puentes de Madera</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="categoria-item">PECES
+            <div class="mega-menu">
+                <div class="menu-col">
+                    <h4>Acuarios</h4>
+                    <ul>
+                        <li><a href="#">Peceras de Vidrio</a></li>
+                        <li><a href="#">Muebles de Soporte</a></li>
+                        <li><a href="#">Kits Completos</a></li>
+                    </ul>
+                </div>
+                <div class="menu-col">
+                    <h4>Mantenimiento</h4>
+                    <ul>
+                        <li><a href="#">Filtros de Cascada</a></li>
+                        <li><a href="#">Bombas de Oxígeno</a></li>
+                        <li><a href="#">Termostatos</a></li>
+                        <li><a href="#">Acondicionador de Agua</a></li>
+                    </ul>
+                </div>
+                <div class="menu-col">
+                    <h4>Decoración</h4>
+                    <ul>
+                        <li><a href="#">Plantas Artificiales</a></li>
+                        <li><a href="#">Grava de Colores</a></li>
+                        <li><a href="#">Troncos Naturales</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="categoria-item">LORO
+            <div class="mega-menu">
+                <div class="menu-col">
+                    <h4>Nutrición</h4>
+                    <ul>
+                        <li><a href="#">Mistura de Semillas</a></li>
+                        <li><a href="#">Extruidos de Frutas</a></li>
+                        <li><a href="#">Vitaminas en Gotas</a></li>
+                    </ul>
+                </div>
+                <div class="menu-col">
+                    <h4>Hospedaje</h4>
+                    <ul>
+                        <li><a href="#">Jaulas de Pie</a></li>
+                        <li><a href="#">Perchas de Calcio</a></li>
+                        <li><a href="#">Columpios</a></li>
+                    </ul>
+                </div>
+                <div class="menu-col">
+                    <h4>Higiene</h4>
+                    <ul>
+                        <li><a href="#">Spray de Plumas</a></li>
+                        <li><a href="#">Bañeras Adaptables</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="categoria-item" style="color: #ff0000; font-weight: 800;">🔥 OFERTAS</div>
+    </div>
+
+    <div class="contenedor-banner-estatico">
+        <img src="BARF 1.png" alt="Banner Publicitario">
+    </div>
+
+   
+
+
+        <div class="contenedor-cargar-mas">
+            <button class="btn-cargar-mas" id="btn-cargar-mas" onclick="cargarMasProductos()">Cargar más productos</button>
+        </div>
+    </div>
+
+    <div class="marcas-section">
+        <h2>MARCAS ALIADAS</h2>
+        <div class="marcas-container">
+            <div class="marca-item"><a href="https://www.purina.com.co/" target="_blank"><img src="purina .png" alt="Purina"></a></div>
+            <div class="marca-item"><a href="https://www.royalcanin.com/co" target="_blank"><img src="https://via.placeholder.com/150x80?text=ROYAL+CANIN" alt="Royal Canin"></a></div>
+            <div class="marca-item"><a href="PELUDITOS.HTML" target="_blank"><img src="logo pedudito.png" alt="Peludito"></a></div>
+            <div class="marca-item"><a href="https://www.nutrecan.com.co/" target="_blank"><img src="https://via.placeholder.com/150x80?text=NUTRE+CAN" alt="NutreCan"></a></div>
+            <div class="marca-item"><a href="https://www.hillspet.com.co/" target="_blank"><img src="https://via.placeholder.com/150x80?text=HILL'S" alt="Hills"></a></div>
+        </div>
+    </div>
+
+    <footer id="contacto">
+        <h2>SÍGUENOS Y VISÍTANOS</h2>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/yakomundodemascotas/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+        </div>
+        
+        <div class="direccion-box">
+            <p><i class="fas fa-map-marker-alt"></i> <strong>DIRECCIÓN:</strong> Calle 15 #13a-11, Chía, Cundinamarca</p>
+            <p><i class="fas fa-phone"></i> <strong>TELÉFONO:</strong> +57 322 402 2039</p>
+            <a href="https://maps.google.com/?q=Calle+15+%2313a-11,+Chía,+Cundinamarca" target="_blank" class="btn-maps">
+                <i class="fas fa-route"></i> VER EN GOOGLE MAPS
+            </a>
+        </div>
+
+        <div class="seccion-pagos">
+            <div class="titulo-pagos">MÉTODOS DE PAGO ACEPTADOS</div>
+            <div class="iconos-pagos-container">
+                <img src="https://images.crunchbase.com/image/upload/c_pad,h_170,w_170,f_auto,g_faces,z_1,q_auto:eco,dpr_1" alt="Nequi" class="pago-logo">
+                <img src="https://www.daviplata.com/PublishingImages/LogoDaviplata.png" alt="Daviplata" class="pago-logo">
+                <img src="llave.png" alt="Llave" class="pago-logo">
+                <div class="pago-efectivo">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <span>EFECTIVO</span>
+                </div>
+            </div>
+        </div>
+        
+        <div style="margin-top: 50px; opacity: 0.6; font-size: 13px;">
+            <p>© 2026 YAKO MUNDO DE MASCOTAS. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <div id="modal-carrito" class="modal-carrito-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-shopping-basket"></i> Resumen de Pedido</h3>
+                <button onclick="toggleCart()" style="background:none; border:none; font-size:25px; cursor:pointer;">×</button>
+            </div>
+            <div id="lista-carrito" class="lista-productos-modal"></div>
+            <div class="modal-footer">
+                <p style="font-size: 1.2rem;">Total: <strong>$<span id="total-modal">0</span></strong></p>
+                <button class="btn-comprar btn-verde" style="width: 100%; margin-bottom: 10px;" onclick="enviarWhatsApp()">Finalizar y Pedir por WhatsApp</button>
+                <button class="btn-comprar" style="width: 100%; background: #999;" onclick="vaciarCarrito()">Vaciar Todo</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+    <script>
+        // NUEVA FUNCIÓN AGREGADA PARA QUE LOS BULTOS DINÁMICOS SE SUMEN AL CARRITO CORRECTAMENTE
+        function agregarAlCarrito(boton) {
+            const tarjeta = boton.closest('.producto-card');
+            const nombreBase = tarjeta.querySelector('h3').innerText;
+            const select = tarjeta.querySelector('.select-variante');
+            const opcionSeleccionada = select.options[select.selectedIndex];
+            
+            if (!opcionSeleccionada || opcionSeleccionada.value === "") {
+                alert("Por favor, selecciona una variante antes de agregar.");
+                return;
+            }
+            
+            const variante = opcionSeleccionada.value; 
+            const precio = parseFloat(opcionSeleccionada.getAttribute('data-precio'));
+            const inputCantidad = tarjeta.querySelector('.input-cant');
+            
+            // Unificamos el nombre para que en el carrito se vea completo: Ej. "Bulto Dog Chow Adulto (Bulto 15 Kg)"
+            const nombreCompleto = `${nombreBase} (${variante})`;
+            
+            if (typeof sumarPedido === "function") {
+                // Pasamos el elemento input completo para mantener la compatibilidad con tu script.js original
+                sumarPedido(nombreCompleto, precio, inputCantidad);
+            }
+        }
+
+        // Variables globales para guardar el precio seleccionado por cada producto a granel
+        let preciosActualesGranel = {
+            'dog-chow': 0,
+            'cat-chow': 0
+        };
+        let detallesEnvioGranel = {
+            'dog-chow': '',
+            'cat-chow': ''
+        };
+
+        function actualizarPrecioGranel(selectElement, idProducto, precioLibra, precioBulto) {
+            const contenedorCard = selectElement.closest('.producto-card');
+            const inputLibre = contenedorCard.querySelector('.input-dinero-autoformat');
+            const precioSpan = document.getElementById(`precio-${idProducto}`);
+            
+            if (selectElement.value === 'libra') {
+                inputLibre.value = ''; 
+                preciosActualesGranel[idProducto] = precioLibra;
+                detallesEnvioGranel[idProducto] = 'Presentación: Libra';
+                precioSpan.textContent = '$' + precioLibra.toLocaleString('es-CO');
+            } else if (selectElement.value === 'bulto') {
+                inputLibre.value = ''; 
+                preciosActualesGranel[idProducto] = precioBulto;
+                detallesEnvioGranel[idProducto] = 'Presentación: Bulto';
+                precioSpan.textContent = '$' + precioBulto.toLocaleString('es-CO');
+            } else {
+                preciosActualesGranel[idProducto] = 0;
+                detallesEnvioGranel[idProducto] = '';
+                precioSpan.textContent = '$0';
+            }
+        }
+
+        function formatearMonedaInput(input) {
+            let valor = input.value.replace(/\D/g, "");
+            if (valor === "") {
+                input.value = "";
+                return;
+            }
+            input.value = Number(valor).toLocaleString('es-CO');
+        }
+
+        function calcularPrecioLibre(input, idProducto) {
+            const contenedorCard = input.closest('.producto-card');
+            const selectFijo = contenedorCard.querySelector('.select-granel-dinamico');
+            const precioSpan = document.getElementById(`precio-${idProducto}`);
+            
+            if (selectFijo) selectFijo.value = "";
+
+            let valorLimpio = input.value.replace(/\./g, ""); 
+            
+            if (valorLimpio !== "" && parseInt(valorLimpio) > 0) {
+                let dinero = parseInt(valorLimpio);
+                preciosActualesGranel[idProducto] = dinero;
+                detallesEnvioGranel[idProducto] = `Valor solicitado: $${input.value}`;
+                precioSpan.textContent = '$' + dinero.toLocaleString('es-CO');
+            } else {
+                preciosActualesGranel[idProducto] = 0;
+                detallesEnvioGranel[idProducto] = '';
+                precioSpan.textContent = '$0';
+            }
+        }
+
+        function agregarGranelAlCarrito(nombreProducto, idProducto, boton) {
+            const precioFinal = preciosActualesGranel[idProducto];
+            const detalle = detallesEnvioGranel[idProducto];
+            const contenedorCard = boton.closest('.producto-card');
+
+            if (precioFinal === 0 || detalle === '') {
+                return; 
+            }
+
+            const nombreCompletoCarrito = `${nombreProducto} (${detalle})`;
+
+            if (typeof sumarPedido === "function") {
+                sumarPedido(nombreCompletoCarrito, precioFinal, contenedorCard.querySelector('.input-cant'));
+            }
+        }
+
+        // CONFIGURACIÓN DE LA CUADRÍCULA DE FILTROS 
+        const productosPorTanda = 9; 
+        let productosVisibles = productosPorTanda;
+        let filtroActual = 'todos'; 
+
+        function inicializarTienda() {
+            const productos = document.querySelectorAll('#grid-productos .producto-card');
+            let contados = 0;
+            
+            productos.forEach((producto) => {
+                const edadProducto = producto.getAttribute('data-edad');
+                
+                // Si el filtro es 'todos', no se incluyen los de tipo 'granel'
+                if (filtroActual === 'todos') {
+                    if (edadProducto !== 'granel') {
+                        if (contados < productosVisibles) {
+                            producto.classList.remove('oculto');
+                        } else {
+                            producto.classList.add('oculto');
+                        }
+                        contados++;
+                    } else {
+                        producto.classList.add('oculto');
+                    }
+                } else if (edadProducto === filtroActual) {
+                    if (contados < productosVisibles) {
+                        producto.classList.remove('oculto');
+                    } else {
+                        producto.classList.add('oculto');
+                    }
+                    contados++;
+                } else {
+                    producto.classList.add('oculto');
+                }
+            });
+
+            // Ajuste dinámico del botón "Cargar más"
+            let productosFiltradosTotales = 0;
+            if (filtroActual === 'todos') {
+                productosFiltradosTotales = document.querySelectorAll('#grid-productos .producto-card:not([data-edad="granel"])').length;
+            } else {
+                productosFiltradosTotales = document.querySelectorAll(`#grid-productos .producto-card[data-edad="${filtroActual}"]`).length;
+            }
+            
+            if (productosFiltradosTotales <= productosVisibles) {
+                document.getElementById('btn-cargar-mas').style.display = 'none';
+            } else {
+                document.getElementById('btn-cargar-mas').style.display = 'inline-block';
+            }
+        }
+
+        function cargarMasProductos() {
+            productosVisibles += productosPorTanda;
+            inicializarTienda();
+        }
+
+        function filtrarPorEdad(edad, elemento) {
+            filtroActual = edad;
+            productosVisibles = productosPorTanda; 
+            
+            document.querySelectorAll('.icon-card').forEach(card => card.classList.remove('activo'));
+            elemento.classList.add('activo');
+            
+            inicializarTienda();
+        }
+
+        document.addEventListener("DOMContentLoaded", inicializarTienda);
+        function aplicarFiltros() {
+    const precioMax = parseFloat(document.getElementById('sliderPrecio').value);
+    const marcasSeleccionadas = Array.from(document.querySelectorAll('.filtro-marca:checked')).map(cb => cb.value);
+    const productos = document.querySelectorAll('.producto-card');
+
+    productos.forEach(producto => {
+        // Obtenemos el nombre del producto y el precio
+        const titulo = producto.querySelector('h3').innerText.toLowerCase();
+        const precioTexto = producto.querySelector('.precio').innerText;
+        // Limpiamos el formato de moneda (quita $ y puntos)
+        const precioProducto = parseFloat(precioTexto.replace(/[^0-9]/g, ''));
+
+        // Validaciones
+        const cumplePrecio = precioProducto <= precioMax;
+        const cumpleMarca = marcasSeleccionadas.length === 0 || 
+                            marcasSeleccionadas.some(marca => titulo.includes(marca));
+
+        // Mostrar u ocultar
+        if (cumplePrecio && cumpleMarca) {
+            producto.style.display = 'block';
+        } else {
+            producto.style.display = 'none';
+        }
+    });
+}
+    </script>
+</body>
+</html>

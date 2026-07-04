@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yako Mundo Mascotas | Tienda</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-oscuro: #00004d;
+            --dorado: #d4af37;
+            --verde-exito: #2ecc71;
+            --gris-fondo: #f8f9fa;
+        }
+
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background-color: var(--gris-fondo); 
+            color: #333;
+        }
+
+        /* HEADER Y NAVEGACIÓN */
+        header { 
+            background-color: var(--azul-oscuro); 
+            color: white; 
+            padding: 15px 5%; 
+            display: grid; 
+            grid-template-columns: auto 1fr auto; 
+            align-items: center; 
+            gap: 30px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-wrapper { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+        .logo { font-weight: 800; font-size: 20px; letter-spacing: 1px; }
+        .logo span { color: var(--dorado); }
+
+        .search-bar { width: 100%; max-width: 500px; position: relative; justify-self: center; }
+        .search-bar input { 
+            width: 100%; 
+            padding: 12px 20px; 
+            border-radius: 25px; 
+            border: none; 
+            outline: none;
+            font-size: 14px;
+        }
+
+        .cart-info { 
+            background: var(--dorado); 
+            padding: 10px 20px; 
+            border-radius: 12px; 
+            color: #000; 
+            font-weight: 800; 
+            display: flex; 
+            align-items: center; 
+            gap: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .submenu { 
+            background: white; 
+            padding: 15px; 
+            display: flex; 
+            justify-content: center; 
+            gap: 30px; 
+            font-size: 13px; 
+            font-weight: 600; 
+            text-transform: uppercase; 
+            border-bottom: 1px solid #ddd;
+        }
+        .submenu span { cursor: pointer; transition: 0.2s; }
+        .submenu span:hover { color: var(--dorado); }
+        .ofertas { color: #ff0000; font-weight: 800; }
+
+        .hero-container { width: 100%; height: 350px; overflow: hidden; }
+        .hero-container img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* SECCIÓN CATEGORÍAS VISUALES */
+        .visual-categories { padding: 40px 5%; text-align: center; background: white; }
+        .cat-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 20px; }
+        .cat-item { width: 140px; text-decoration: none; color: inherit; transition: 0.3s; }
+        .cat-item:hover { transform: translateY(-5px); }
+        .cat-circle { 
+            width: 120px; height: 120px; 
+            background: var(--gris-fondo); 
+            border-radius: 50%; 
+            margin: 0 auto 15px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .cat-circle img { width: 70%; object-fit: contain; }
+
+        /* CUERPO PRINCIPAL */
+        .main-content {
+            display: flex;
+            max-width: 1300px;
+            margin: 40px auto;
+            padding: 0 20px;
+            gap: 30px;
+        }
+
+        .sidebar {
+            width: 240px;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            height: fit-content;
+        }
+
+        .sidebar h3 { font-size: 16px; color: var(--azul-oscuro); margin-bottom: 20px; border-left: 4px solid var(--dorado); padding-left: 10px; }
+        .filter-group { margin-bottom: 12px; display: flex; align-items: center; cursor: pointer; }
+        .filter-group input { cursor: pointer; }
+        .filter-group label { margin-left: 10px; font-size: 14px; font-weight: 600; cursor: pointer; }
+
+        .products-container { flex: 1; }
+        .grid-products { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+            gap: 25px; 
+        }
+
+        /* CARD PRODUCTO */
+        .product-card { 
+            background: white; 
+            border-radius: 20px; 
+            padding: 20px; 
+            text-align: center;
+            border: 1px solid #eee;
+        }
+        .product-card img { width: 100%; height: 200px; object-fit: contain; margin-bottom: 15px; }
+        .tag { background: #eef2ff; color: #4a90e2; padding: 4px 12px; border-radius: 15px; font-size: 11px; font-weight: 800; display: inline-block; }
+        .product-title { font-size: 16px; font-weight: 600; margin: 10px 0; height: 40px; overflow: hidden; }
+        .price { color: var(--verde-exito); font-size: 22px; font-weight: 800; display: block; margin: 10px 0; }
+
+        .qty-controls { 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 10px; 
+            margin-bottom: 15px;
+        }
+        .btn-qty { width: 30px; height: 30px; border-radius: 50%; border: 1px solid #ddd; background: white; cursor: pointer; }
+        .qty-input { width: 40px; text-align: center; border: none; font-weight: 800; }
+
+        .btn-add { 
+            background: var(--azul-oscuro); 
+            color: white; 
+            border: none; 
+            padding: 12px; 
+            width: 100%; 
+            border-radius: 25px; 
+            font-weight: 800; 
+            cursor: pointer; 
+            transition: 0.3s;
+        }
+        .btn-add:hover { background: #000033; }
+
+        /* --- MODAL CARRITO (TU SISTEMA ORIGINAL) --- */
+        .modal-carrito-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            width: 90%; max-width: 450px;
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            max-height: 80vh;
+        }
+
+        .modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ddd; padding-bottom: 10px; }
+        #lista-carrito { flex-grow: 1; overflow-y: auto; margin: 15px 0; }
+        .cart-item-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #eee; font-size: 14px; }
+
+        /* FOOTER */
+        footer { background: var(--azul-oscuro); color: white; padding: 50px 5% 20px; text-align: center; margin-top: 50px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .social-icons { font-size: 24px; margin: 20px 0; }
+        .social-icons a { color: white; margin: 0 15px; text-decoration: none; }
+        .payment-logos { display: flex; justify-content: center; gap: 15px; align-items: center; margin-top: 15px; }
+        .pago-logo { height: 40px; background: white; padding: 5px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-wrapper" onclick="location.href='INICIO.HTML'">
+            <div class="logo">YAKO<span>MUNDO</span></div>
+        </div>
+        
+        <div class="search-bar">
+            <input type="text" id="buscador" placeholder="¿Qué necesita tu mejor amigo hoy?" onkeyup="filtrarPorNombre()">
+        </div>
+
+        <div class="cart-info" onclick="toggleCart()">
+            <i class="fas fa-shopping-basket"></i> 
+            <span id="count">0</span> | $<span id="total">0</span>
+        </div>
+    </header>
+
+    <nav class="submenu">
+        <span>Perros</span><span>Gatos</span><span>Hámster</span><span>Peces</span><span>Loro</span><span class="ofertas">🔥 Ofertas</span>
+    </nav>
+
+    <div class="hero-container">
+        <img src="BARF 1222.PNG" alt="Banner Principal">
+    </div>
+
+    <section class="visual-categories">
+        <h2>Juguetes para Perros</h2>
+        <div class="cat-grid">
+            <a href="mordederos.html" class="cat-item">
+                <div class="cat-circle"><img src="hueso mediano .png" alt="Mordederos"></div>
+                <p>Mordederos</p>
+            </a>
+            <a href="pelotas.html" class="cat-item">
+                <div class="cat-circle"><img src="PLACAAA.png" alt="Pelotas"></div>
+                <p>Pelotas</p>
+            </a>
+            <a href="peluches.html" class="cat-item">
+                <div class="cat-circle"><img src="https://cdn-icons-png.flaticon.com/512/3047/3047928.png" alt="Peluches"></div>
+                <p>Peluches</p>
+            </a>
+            <a href="lazos.html" class="cat-item">
+                <div class="cat-circle"><img src="https://images.unsplash.com/photo-1576201836106-db1758fd1c97?w=200" style="width:100%; height:100%; object-fit:cover;"></div>
+                <p>Lazos</p>
+            </a>
+        </div>
+    </section>
+
+    <div class="main-content">
+        <aside class="sidebar">
+            <h3>FILTRAR POR EDAD</h3>
+            <div class="filter-group">
+                <input type="radio" name="edad" id="cachorro" onclick="filtrarPorEtapa('cachorro')">
+                <label for="cachorro">CACHORRO</label>
+            </div>
+            <div class="filter-group">
+                <input type="radio" name="edad" id="adulto" onclick="filtrarPorEtapa('adulto')">
+                <label for="adulto">ADULTO</label>
+            </div>
+            <div class="filter-group">
+                <input type="radio" name="edad" id="todos" onclick="filtrarPorEtapa('todos')" checked>
+                <label for="todos">TODOS</label>
+            </div>
+        </aside>
+
+        <div class="products-container">
+            <h1 id="titulo-catalogo">CATÁLOGO DE PRODUCTOS</h1>
+            <div class="grid-products" id="contenedor-productos"></div>
+        </div>
+    </div>
+
+    <div id="modal-carrito" class="modal-carrito-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🛒 Tu Pedido</h3>
+                <button onclick="toggleCart()" style="background:none; border:none; font-size:25px; cursor:pointer;">×</button>
+            </div>
+            <div id="lista-carrito"></div>
+            <div class="modal-footer">
+                <p>Total: <strong>$<span id="total-modal">0</span></strong></p>
+                <button class="btn-add" style="width:100%; margin-bottom:10px; background:var(--verde-exito);" onclick="enviarWhatsApp()">Pedir por WhatsApp</button>
+                <button onclick="vaciarCarrito()" style="width:100%; background:#999; color:white; border:none; padding:10px; border-radius:25px; cursor:pointer;">Vaciar Carrito</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <h2>SÍGUENOS Y VISÍTANOS</h2>
+                <p><i class="fas fa-map-marker-alt"></i> Calle 15 #13a-11, Chía</p>
+                <p><i class="fas fa-phone"></i> +57 322 402 2039</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            
+            <div>
+                <h3>MÉTODOS DE PAGO</h3>
+                <div class="payment-logos">
+                    <img src="https://images.crunchbase.com/image/upload/c_pad,h_170,w_170,f_auto,g_faces,z_1,q_auto:eco,dpr_1/pzkswubv6wntjym1u7x6" alt="Nequi" class="pago-logo">
+                    <img src="daviplata.png" alt="Daviplata" class="pago-logo">
+                    <img src="https://llave.com.co/wp-content/uploads/2023/06/Logo-Llave-Vertical.png" alt="Llave" class="pago-logo">
+                </div>
+            </div>
+        </div>
+    </footer>
+<script>
+    // 1. DATOS Y VARIABLES GLOBALES
+    const listaProductos = [
+        { nombre: "BARF 750 GR CACHORRO", precio: 8600, img: "PEQUEÑOS ADULTOS.WEBP", cat: "BARF", etapa: "cachorro" },
+        { nombre: "BARF Res 600 GR ADULTO", precio: 7350, img: "chunkypollo adulto.WEBP", cat: "BARF", etapa: "adulto" },
+        { nombre: "Chunky Pollo Adulto", precio: 12500, img: "chunkypollo adulto.WEBP", cat: "Concentrado", etapa: "adulto" },
+        { nombre: "Pechera Acolchada", precio: 45000, img: "https://images.unsplash.com/photo-1591768575198-88dac53fbd0a?w=400", cat: "Accesorio", etapa: "todos" },
+        { nombre: "Champú Antipulgas", precio: 28000, img: "verde.png", cat: "Higiene", etapa: "todos"  }
+    ];
+
+    let carrito = [];
+    let productosVisibles = 4;
+    const incremento = 4;
+
+    // 2. INICIALIZACIÓN (Al cargar la página)
+    window.onload = function() {
+        // Recuperar carrito de LocalStorage
+        const memoria = localStorage.getItem('carritoYako');
+        if (memoria) {
+            carrito = JSON.parse(memoria);
+        }
+        
+        cargarCatalogo(listaProductos);
+        actualizarInterfaz();
+    };
+
+    // 3. RENDERIZADO DEL CATÁLOGO
+    function cargarCatalogo(productos) {
+        const grid = document.getElementById('contenedor-productos');
+        grid.innerHTML = "";
+        
+        productos.forEach((prod, index) => {
+            const displayStyle = index < productosVisibles ? 'block' : 'none';
+            grid.innerHTML += `
+                <div class="product-card" style="display: ${displayStyle}">
+                    <span class="tag">${prod.cat}</span>
+                    <img src="${prod.img}" alt="${prod.nombre}">
+                    <div class="product-title">${prod.nombre}</div>
+                    <span class="price">$${prod.precio.toLocaleString('es-CO')}</span>
+                    <div class="qty-controls">
+                        <button class="btn-qty" onclick="ajustarCant(this, -1)">-</button>
+                        <input type="text" value="1" class="qty-input" readonly>
+                        <button class="btn-qty" onclick="ajustarCant(this, 1)">+</button>
+                    </div>
+                    <button class="btn-add" onclick="sumarPedido('${prod.nombre}', ${prod.precio}, this)">AÑADIR AL CARRITO</button>
+                </div>
+            `;
+        });
+
+        // Control del botón "Cargar más"
+        const btnCargar = document.getElementById('btnCargar');
+        if (btnCargar) {
+            btnCargar.style.display = productosVisibles >= productos.length ? 'none' : 'block';
+        }
+    }
+
+    function cargarMas() {
+        productosVisibles += incremento;
+        // Re-filtramos según lo que haya en el buscador para no perder el contexto
+        filtrarPorNombre(); 
+    }
+
+    // 4. LÓGICA DEL CARRITO
+    function ajustarCant(btn, cambio) {
+        const input = btn.parentNode.querySelector('.qty-input');
+        let valor = parseInt(input.value) + cambio;
+        if (valor < 1) valor = 1;
+        input.value = valor;
+    }
+
+    function sumarPedido(nombre, precio, btn) {
+        const qtyInput = btn.parentNode.querySelector('.qty-input');
+        const cantidad = parseInt(qtyInput.value);
+        const imagen = btn.closest('.product-card').querySelector('img').src;
+        
+        const existe = carrito.find(item => item.nombre === nombre);
+        if (existe) {
+            existe.cantidad += cantidad;
+        } else {
+            carrito.push({ nombre, precio, imagen, cantidad });
+        }
+        
+        guardarMemoria();
+        qtyInput.value = 1; // Resetear contador visual
+    }
+
+    function guardarMemoria() {
+        localStorage.setItem('carritoYako', JSON.stringify(carrito));
+        actualizarInterfaz();
+    }
+
+    function actualizarInterfaz() {
+        let totalItems = 0;
+        let totalDinero = 0;
+        const listaDiv = document.getElementById('lista-carrito');
+        
+        if(listaDiv) listaDiv.innerHTML = "";
+
+        carrito.forEach((item, index) => {
+            totalItems += item.cantidad;
+            totalDinero += (item.precio * item.cantidad);
+            
+            if(listaDiv) {
+                listaDiv.innerHTML += `
+                    <div class="cart-item-row" style="display:flex; align-items:center; gap:10px; margin-bottom:10px; border-bottom:1px solid #eee; padding-bottom:5px;">
+                        <img src="${item.imagen}" style="width:40px; height:40px; object-fit:cover; border-radius:4px;">
+                        <div style="flex:1">
+                            <small>${item.nombre}</small><br>
+                            <strong>${item.cantidad} x $${item.precio.toLocaleString('es-CO')}</strong>
+                        </div>
+                        <button onclick="eliminarItem(${index})" style="border:none; background:none; color:red; cursor:pointer;">&times;</button>
+                    </div>
+                `;
+            }
+        });
+
+        // Actualizar contadores globales
+        document.getElementById('count').innerText = totalItems;
+        document.getElementById('total').innerText = totalDinero.toLocaleString('es-CO');
+        const totalModal = document.getElementById('total-modal');
+        if(totalModal) totalModal.innerText = totalDinero.toLocaleString('es-CO');
+    }
+
+    function eliminarItem(index) {
+        carrito.splice(index, 1);
+        guardarMemoria();
+    }
+
+    function vaciarCarrito() {
+        carrito = [];
+        guardarMemoria();
+        toggleCart();
+    }
+
+    function toggleCart() {
+        const modal = document.getElementById('modal-carrito');
+        const isVisible = modal.style.display === 'block' || modal.style.display === 'flex';
+        modal.style.display = isVisible ? 'none' : 'flex';
+    }
+
+    // 5. FILTROS
+    function filtrarPorNombre() {
+        const texto = document.getElementById('buscador').value.toLowerCase();
+        const filtrados = listaProductos.filter(p => p.nombre.toLowerCase().includes(texto));
+        cargarCatalogo(filtrados);
+    }
+
+    function filtrarPorEtapa(etapaSeleccionada) {
+        productosVisibles = 4; // Reiniciar vista al filtrar
+        if (etapaSeleccionada === 'todos') {
+            cargarCatalogo(listaProductos);
+            document.getElementById('titulo-catalogo').innerText = "CATÁLOGO DE PRODUCTOS";
+        } else {
+            const filtrados = listaProductos.filter(p => p.etapa === etapaSeleccionada || p.etapa === 'todos');
+            cargarCatalogo(filtrados);
+            document.getElementById('titulo-catalogo').innerText = "SECCIÓN " + etapaSeleccionada.toUpperCase();
+        }
+    }
+
+    // 6. ENVÍO WHATSAPP
+    function enviarWhatsApp() {
+        if (carrito.length === 0) return alert("El carrito está vacío");
+        
+        let mensaje = "¡Hola Yako Mundo Mascotas! Quiero realizar este pedido:%0A%0A";
+        let totalGlobal = 0;
+
+        carrito.forEach(item => {
+            const subtotal = item.precio * item.cantidad;
+            totalGlobal += subtotal;
+            mensaje += `• ${item.nombre} (x${item.cantidad}) - $${subtotal.toLocaleString('es-CO')}%0A`;
+        });
+
+        mensaje += `%0A*TOTAL A PAGAR: $${totalGlobal.toLocaleString('es-CO')}*%0A`;
+        mensaje += `%0AMétodo de pago: (Nequi / Daviplata / Llave / Efectivo)`;
+        
+        const url = `https://wa.me/573224022039?text=${mensaje}`;
+        window.open(url, '_blank');
+    }
+</script>

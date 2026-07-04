@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yako Mundo Mascotas | Tienda Premium</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* ESTILOS ESPECÍFICOS PARA EL NUEVO DISEÑO */
+        :root {
+            --morado-laika: #4b0082;
+            --rosa-promo: #ff0080;
+        }
+
+        /* 1. Reemplazo del Slider por el Banner de la Imagen 2 */
+        .banner-promocional {
+            background-color: var(--morado-laika);
+            margin: 20px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 30px 50px;
+            color: white;
+            min-height: 250px;
+        }
+
+        .banner-info h2 { font-size: 3rem; margin: 0; font-weight: 800; }
+        .banner-info p { font-size: 1.2rem; margin: 10px 0; }
+        
+        .btn-comprar-banner {
+            background: white;
+            color: var(--morado-laika);
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 800;
+            display: inline-block;
+            margin-top: 15px;
+        }
+
+        /* 2. Cuadrícula de 4 columnas (Imagen 4 corregida) */
+        .seccion-cuadricula {
+            padding: 40px 5%;
+            text-align: center;
+        }
+
+        .contenedor-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 cuadros por línea */
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .tarjeta-categoria {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .tarjeta-categoria:hover {
+            transform: translateY(-5px);
+            border-color: #ff0000;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .tarjeta-categoria img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .tarjeta-categoria p {
+            font-weight: 800;
+            font-size: 1.1rem;
+            margin: 0;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo-wrapper">
+            <img src="LOGO YAKO .png" alt="Logo" class="brand-logo-img">
+            <div class="logo">YAKO<span>MUNDO</span>MASCOTAS</div>
+        </div>
+
+        <div class="search-container">
+            <input type="text" id="inputBuscador" placeholder="¿Qué necesita tu mejor amigo hoy?">
+            <i class="fas fa-search" onclick="realizarBusqueda()" style="cursor:pointer;"></i>
+        </div>
+        
+        <ul>
+            <li><a href="MI CUENTA.HTML">Mi Cuenta</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+            <li>
+                <div class="cart-info" onclick="toggleCart()" style="cursor: pointer;">
+                    <i class="fas fa-shopping-basket"></i> 
+                    <span id="count">0</span> | $<span id="total">0</span>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="banner-promocional">
+        <div class="banner-info">
+            <span style="background: var(--rosa-promo); padding: 5px 10px; border-radius: 5px;">PETMAMÁ</span>
+            <h2>HASTA 20% DCTO</h2>
+            <p>Mientras vivas en esta casa... ¡consiente a tu mascota!</p>
+            <a href="#productos" class="btn-comprar-banner">¡COMPRAR AHORA!</a>
+        </div>
+        <div class="banner-img">
+            <img src="https://via.placeholder.com/400x200?text=Imagen+Mascotas" alt="Promo" style="max-width: 100%;">
+        </div>
+    </div>
+
+    <section class="seccion-cuadricula">
+        <h2>Busca por tus Mascotas y Categorías</h2>
+        
+        <div class="contenedor-grid">
+            <div class="tarjeta-categoria" onclick="irACategoria('perros.html')">
+                <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=400" alt="Perros">
+                <p>Perros</p>
+            </div>
+            <div class="tarjeta-categoria" onclick="irACategoria('gatos.html')">
+                <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400" alt="Gatos">
+                <p>Gatos</p>
+            </div>
+            <div class="tarjeta-categoria" onclick="irACategoria('peces.html')">
+                <img src="https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?w=400" alt="Peces">
+                <p>Peces</p>
+            </div>
+            <div class="tarjeta-categoria" onclick="irACategoria('aves.html')">
+                <img src="https://www.bing.com/th/id/OIP.jlwwpzoA2xhVvBaisgo7qQHaEc?w=306&h=211&c=8&rs=1&qlt=90&o=6&dpr=1.1&pid=3.1&rm=2" alt="Aves">
+                <p>Aves</p>
+            </div>
+
+            <div class="tarjeta-categoria" onclick="irACategoria('lazos.html')">
+                <img src="https://via.placeholder.com/400?text=Lazos" alt="Lazos">
+                <p>Lazos</p>
+            </div>
+            <div class="tarjeta-categoria" onclick="irACategoria('pelotas.html')">
+                <img src="https://via.placeholder.com/400?text=Pelotas" alt="Pelotas">
+                <p>Pelotas</p>
+            </div>
+            <div class="tarjeta-categoria" onclick="irACategoria('kongs.html')">
+                <img src="https://via.placeholder.com/400?text=Kongs" alt="Kongs">
+                <p>Kongs</p>
+            </div>
+            <div class="tarjeta-categoria" onclick="irACategoria('peluches.html')">
+                <img src="https://via.placeholder.com/400?text=Peluches" alt="Peluches">
+                <p>Peluches</p>
+            </div>
+
+            <div class="tarjeta-categoria" onclick="irACategoria('shampoo.html')">
+                <img src="https://via.placeholder.com/400?text=Shampoo" alt="Shampoo">
+                <p>Shampoo</p>
+            </div>
+            <div class="tarjeta-categoria" onclick="irACategoria('cepillos.html')">
+                <img src="https://via.placeholder.com/400?text=Cepillos" alt="Cepillos">
+                <p>Cepillos</p>
+            </div>
+            <div class="tarjeta-categoria" onclick="irACategoria('arenas.html')">
+                <img src="https://via.placeholder.com/400?text=Arenas" alt="Arenas">
+                <p>Arenas</p>
+            </div>
+            <div class="tarjeta-categoria" onclick="irACategoria('desparasitantes.html')">
+                <img src="https://via.placeholder.com/400?text=Pipetas" alt="Pipetas">
+                <p>Salud</p>
+            </div>
+
+            <div class="tarjeta-categoria" onclick="irACategoria('camas.html')">
+                <img src="https://via.placeholder.com/400?text=Camas" alt="Camas">
+                <p>Camas</p>
+            </div>
+            <div class="tarjeta-categoria" onclick="irACategoria('pecheras.html')">
+                <img src="https://via.placeholder.com/400?text=Pecheras" alt="Pecheras">
+                <p>Pecheras</p>
+            </div>
+            <div class="tarjeta-categoria" onclick="irACategoria('guacales.html')">
+                <img src="https://via.placeholder.com/400?text=Guacales" alt="Guacales">
+                <p>Guacales</p>
+            </div>
+            <div class="tarjeta-categoria" onclick="irACategoria('snacks.html')">
+                <img src="https://via.placeholder.com/400?text=Snacks" alt="Snacks">
+                <p>Snacks</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Función para redirigir al hacer clic en los cuadros
+        function irACategoria(url) {
+            window.location.href = url;
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
