@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Productos Flexible</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #000; padding: 12px; text-align: center; }
+        th { background-color: #f2f2f2; }
+        .img-celda { width: 60px; height: 60px; object-fit: cover; display: block; margin: 0 auto; }
+        .controles { margin-bottom: 20px; padding: 15px; background: #f9f9f9; border-radius: 8px; }
+    </style>
+</head>
+<body>
+
+    <div class="controles">
+        <h2>Registrar Producto</h2>
+        <input type="text" id="nombre" placeholder="Nombre Producto">
+        <input type="number" id="precio" placeholder="Precio (solo números)">
+        
+        <!-- Selector para Unidad o Completo -->
+        <select id="tipoPrecio">
+            <option value="Unidad">Por Unidad</option>
+            <option value="Completo">Completo</option>
+        </select>
+        
+        <input type="file" id="imagen" accept="image/*">
+        <button onclick="agregarFila()">Agregar a la Lista</button>
+        <button onclick="generarPDF()">Descargar PDF</button>
+    </div>
+
+    <table id="tablaProductos">
+        <thead>
+            <tr>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Tipo de Venta</th>
+            </tr>
+        </thead>
+        <tbody id="cuerpoTabla"></tbody>
+    </table>
+
+    <script>
+        function formatearMoneda(valor) {
+            return '$' + parseInt(valor).toLocaleString('es-CO');
+        }
+
+        function agregarFila() {
+            const nombre = document.getElementById('nombre').value;
+            const precioRaw = document.getElementById('precio').value;
+            const tipo = document.getElementById('tipoPrecio').value;
+            const file = document.getElementById('imagen').files[0];
+
+            if (!nombre || !precioRaw || !file) return alert("Por favor completa todos los campos");
+
+            const precioFormateado = formatearMoneda(precioRaw);
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const tbody = document.getElementById('cuerpoTabla');
+                const fila = document.createElement('tr');
+                
+                fila.innerHTML = `
+                    <td><img src="${e.target.result}" class="img-celda"></td>
+                    <td>${nombre}</td>
+                    <td>${precioFormateado}</td>
+                    <td>${tipo}</td>
+                `;
+                tbody.appendChild(fila);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        async function generarPDF() {
+            const { jsPDF } = window.jspdf;
+            const tabla = document.getElementById('tablaProductos');
+            
+            const canvas = await html2canvas(tabla, { scale: 2 });
+            const imgData = canvas.toDataURL('image/png');
+            
+            const pdf = new jsPDF('p', 'mm', 'a4');
+            const pdfWidth = 190; 
+            const imgProps = pdf.getImageProperties(imgData);
+            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+            pdf.text("Lista de Productos y Precios", 10, 10);
+            pdf.addImage(imgData, 'PNG', 10, 20, pdfWidth, pdfHeight);
+            pdf.save("lista_precios.pdf");
+        }
+    </script>
+</body>
+</html>
