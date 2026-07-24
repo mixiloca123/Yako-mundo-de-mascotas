@@ -631,135 +631,109 @@
     <p>Conoce a los peludos que confían en nosotros</p>
 </div>
 
-<div class="galeria">
-    <div class="slider">
-        <!-- BLOQUE 1 (Las 26 tarjetas originales completas) -->
-        <div class="item-par">
-            <img src="imagen baño/1.png" class="img-base">
-        </div>
-        <div class="item-par">
-            <img src="imagen baño/2.png" class="img-base">
-            <img src="imagen baño/2-2.png" class="img-hover">
-        </div>
-        <div class="item-par">
-            <img src="imagen baño/3.png" class="img-base">
-         
-        </div>
-        <div class="item-par">
-            <img src="imagen baño/4.png" class="img-base">
-            <img src="imagen baño/4-4.png" class="img-hover">
-        </div>
-        <div class="item-par">
-            <img src="imagen baño/5.png" class="img-base">
-          
-        </div>
-        <div class="item-par">
-            <img src="imagen baño/6.png" class="img-base">
-            <img src="imagen baño/6-6.jpg" class="img-hover">
-        </div>
-        <div class="item-par">
-            <img src="imagen baño/7.png" class="img-base">
-           
-        </div>
-        <div class="item-par">
-            <img src="imagen baño/8.png" class="img-base">
-            <img src="imagen baño/8-8.png" class="img-hover">
-        </div>
-        <div class="item-par">
-            <img src="imagen baño/9.png" class="img-base">
-        </div>
-        <div class="item-par">
-            <img src="imagen baño/10.png" class="img-base">
-            <img src="imagen baño/10-10.png" class="img-hover">
-        </div>
-        <div class="item-par">
-            <img src="imagen baño/11.png" class="img-base">
-        </div>
-        <div class="item-par">
-            <img src="imagen baño/12.png" class="img-base">
-            <img src="imagen baño/12-12.png" class="img-hover">
-        </div>
-        <div class="item-par">
-            <img src="imagen baño/13.png" class="img-base">
-            
-        </div>
-        <div class="item-par">
-            <img src="imagen baño/14.png" class="img-base">
-            <img src="imagen baño/14-14.png" class="img-hover">
-        </div>
-        <div class="item-par">
-            <img src="imagen baño/15.png" class="img-base">
-        </div>
-        <div class="item-par">
-            <img src="imagen baño/16.png" class="img-base">
-        <img src="imagen baño/16-16.png" class="img-hover">
-        </div>
-        <div class="item-par">
-            <img src="imagen baño/17.png" class="img-base">
-            
-        </div>
-        <div class="item-par">
-            <img src="imagen baño/18.png" class="img-base">
-            <img src="imagen baño/18-18.png" class="img-hover">
-        </div>
-        <div class="item-par">
-            <img src="imagen baño/19.png" class="img-base">
-        </div>
-        <div class="item-par">
-            <img src="imagen baño/20.png" class="img-base">
-            <img src="imagen baño/20-20.jpg" class="img-hover">
-        </div>
-        <!-- Elementos adicionales recuperados de tu lista original para completar las 26 tarjetas -->
-        <div class="item-par">
-            <img src="imagen baño/21.png" class="img-base">
-           
-        </div>
-        <div class="item-par">
-            <img src="imagen baño/22.png" class="img-base">
-            <img src="imagen baño/22- 22.jpg" class="img-hover">
+<div class="galeria-contenedor-principal">
+    <!-- Botón Izquierda -->
+    <button class="btn-carrusel btn-prev" onclick="moverCarrusel(-1)">&#10094;</button>
 
-        </div>
-        <div class="item-par">
-            <img src="imagen baño/23.png" class="img-base">
-        </div>
-        <div class="item-par">
-            <img src="imagen baño/24.png" class="img-base">
-            <img src="imagen baño/24-24.jpg" class="img-hover">
-        </div>
-        <div class="item-par">
-            <img src="imagen baño/25.png" class="img-base">
-        </div>
-        <div class="item-par">
-            <img src="imagen baño/26.png" class="img-base">
-            <img src="imagen baño/26-26.png" class="img-hover">
-        </div>
+    <div class="galeria">
+        <div class="slider" id="sliderTrack">
+            <!-- BLOQUE 1 (Las 26 tarjetas originales completas) -->
+            <div class="item-par"><img src="imagen baño/1.png" class="img-base"></div>
+            <div class="item-par"><img src="imagen baño/2.png" class="img-base"><img src="imagen baño/2-2.png" class="img-hover"></div>
+            <div class="item-par"><img src="imagen baño/3.png" class="img-base"></div>
+            <div class="item-par"><img src="imagen baño/4.png" class="img-base"><img src="imagen baño/4-4.png" class="img-hover"></div>
+            <div class="item-par"><img src="imagen baño/5.png" class="img-base"></div>
+            <div class="item-par"><img src="imagen baño/6.png" class="img-base"><img src="imagen baño/6-6.jpg" class="img-hover"></div>
+            <div class="item-par"><img src="imagen baño/7.png" class="img-base"></div>
+            <div class="item-par"><img src="imagen baño/8.png" class="img-base"><img src="imagen baño/8-8.png" class="img-hover"></div>
+            <div class="item-par"><img src="imagen baño/9.png" class="img-base"></div>
+            <div class="item-par"><img src="imagen baño/10.png" class="img-base"><img src="imagen baño/10-10.png" class="img-hover"></div>
+            <div class="item-par"><img src="imagen baño/11.png" class="img-base"></div>
+            <div class="item-par"><img src="imagen baño/12.png" class="img-base"><img src="imagen baño/12-12.png" class="img-hover"></div>
+            <div class="item-par"><img src="imagen baño/13.png" class="img-base"></div>
+            <div class="item-par"><img src="imagen baño/14.png" class="img-base"><img src="imagen baño/14-14.png" class="img-hover"></div>
+            <div class="item-par"><img src="imagen baño/15.png" class="img-base"></div>
+            <div class="item-par"><img src="imagen baño/16.png" class="img-base"><img src="imagen baño/16-16.png" class="img-hover"></div>
+            <div class="item-par"><img src="imagen baño/17.png" class="img-base"></div>
+            <div class="item-par"><img src="imagen baño/18.png" class="img-base"><img src="imagen baño/18-18.png" class="img-hover"></div>
+            <div class="item-par"><img src="imagen baño/19.png" class="img-base"></div>
+            <div class="item-par"><img src="imagen baño/20.png" class="img-base"><img src="imagen baño/20-20.jpg" class="img-hover"></div>
+            <div class="item-par"><img src="imagen baño/21.png" class="img-base"></div>
+            <div class="item-par"><img src="imagen baño/22.png" class="img-base"><img src="imagen baño/22- 22.jpg" class="img-hover"></div>
+            <div class="item-par"><img src="imagen baño/23.png" class="img-base"></div>
+            <div class="item-par"><img src="imagen baño/24.png" class="img-base"><img src="imagen baño/24-24.jpg" class="img-hover"></div>
+            <div class="item-par"><img src="imagen baño/25.png" class="img-base"></div>
+            <div class="item-par"><img src="imagen baño/26.png" class="img-base"><img src="imagen baño/26-26.png" class="img-hover"></div>
 
+            <!-- BLOQUE 2 (DUPLICADO EXACTO) -->
+            <div class="item-par"><img src="imagen baño/1.png" class="img-base"></div>
+            <div class="item-par"><img src="imagen baño/2.png" class="img-base"><img src="imagen baño/2-2.png" class="img-hover"></div>
+            <div class="item-par"><img src="imagen baño/3.png" class="img-base"></div>
+            <div class="item-par"><img src="imagen baño/4.png" class="img-base"><img src="imagen baño/4-4.png" class="img-hover"></div>
+            <div class="item-par"><img src="imagen baño/5.png" class="img-base"></div>
+            <div class="item-par"><img src="imagen baño/6.png" class="img-base"><img src="imagen baño/6-6.jpg" class="img-hover"></div>
+            <div class="item-par"><img src="imagen baño/7.png" class="img-base"></div>
+            <div class="item-par"><img src="imagen baño/8.png" class="img-base"><img src="imagen baño/8-8.png" class="img-hover"></div>
+            <div class="item-par"><img src="imagen baño/9.png" class="img-base"></div>
+            <div class="item-par"><img src="imagen baño/10.png" class="img-base"><img src="imagen baño/10-10.png" class="img-hover"></div>
+            <div class="item-par"><img src="imagen baño/11.png" class="img-base"></div>
+            <div class="item-par"><img src="imagen baño/12.png" class="img-base"><img src="imagen baño/12-12.png" class="img-hover"></div>
+            <div class="item-par"><img src="imagen baño/13.png" class="img-base"></div>
+            <div class="item-par"><img src="imagen baño/14.png" class="img-base"><img src="imagen baño/14-14.png" class="img-hover"></div>
+            <div class="item-par"><img src="imagen baño/15.png" class="img-base"></div>
+            <div class="item-par"><img src="imagen baño/16.png" class="img-base"><img src="imagen baño/16-16.png" class="img-hover"></div>
+            <div class="item-par"><img src="imagen baño/17.png" class="img-base"></div>
+            <div class="item-par"><img src="imagen baño/18.png" class="img-base"><img src="imagen baño/18-18.png" class="img-hover"></div>
+            <div class="item-par"><img src="imagen baño/19.png" class="img-base"></div>
+            <div class="item-par"><img src="imagen baño/20.png" class="img-base"><img src="imagen baño/20-20.jpg" class="img-hover"></div>
+            <div class="item-par"><img src="imagen baño/21.png" class="img-base"></div>
+            <div class="item-par"><img src="imagen baño/22.png" class="img-base"><img src="imagen baño/22- 22.jpg" class="img-hover"></div>
+            <div class="item-par"><img src="imagen baño/23.png" class="img-base"></div>
+            <div class="item-par"><img src="imagen baño/24.png" class="img-base"><img src="imagen baño/24-24.jpg" class="img-hover"></div>
+            <div class="item-par"><img src="imagen baño/25.png" class="img-base"></div>
+            <div class="item-par"><img src="imagen baño/26.png" class="img-base"><img src="imagen baño/26-26.png" class="img-hover"></div>
+        </div>
     </div>
+
+    <!-- Botón Derecha -->
+    <button class="btn-carrusel btn-next" onclick="moverCarrusel(1)">&#10095;</button>
 </div>
 
 <style>
-/* Estilos del contenedor del carrusel */
+.galeria-contenedor-principal {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 45px;
+    box-sizing: border-box;
+}
+
 .galeria {
     overflow: hidden;
     width: 100%;
     position: relative;
-    margin-top: 30px;
 }
 
 .slider {
     display: flex;
     gap: 20px;
     width: max-content;
-    /* Ajustado a 90s para que con las 26 tarjetas el movimiento sea amplio y suave */
-    animation: desplazar 90s linear infinite;
 }
 
-/* Pausar el movimiento cuando el usuario pase el mouse por encima del carrusel */
+/* Clases para controlar la dirección de la animación continua */
+.slider.animar-izquierda {
+    animation: desplazarIzquierda 120s linear infinite;
+}
+
+.slider.animar-derecha {
+    animation: desplazarDerecha 120s linear infinite;
+}
+
 .slider:hover {
-    animation-play-state: paused;
+    animation-play-state: paused !important;
 }
 
-/* Cada tarjeta contenedora de las fotos */
 .item-par {
     position: relative;
     width: 250px;
@@ -769,7 +743,6 @@
     flex-shrink: 0;
 }
 
-/* Propiedades de las dos imágenes dentro del carrusel */
 .item-par img {
     width: 100%;
     height: 100%;
@@ -780,64 +753,114 @@
     transition: opacity 0.5s ease-in-out;
 }
 
-/* Foto principal visible por defecto */
 .item-par .img-base {
     opacity: 1;
 }
 
-/* Segunda foto oculta hasta que pasas el mouse */
 .item-par .img-hover {
     opacity: 0;
 }
 
-/* Al poner el mouse encima, la primera se desvanece y aparece la otra */
 .item-par:hover .img-hover {
     opacity: 1;
 }
 
-/* Movimiento continuo del carrusel exacto al 50% */
-@keyframes desplazar {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-50%);
-    }
+.btn-carrusel {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    font-size: 24px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-carrusel:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+    transform: translateY(-50%) scale(1.08);
+}
+
+.btn-prev {
+    left: 0px; 
+}
+
+.btn-next {
+    right: 0px; 
+}
+
+/* Animaciones personalizadas para ambos lados */
+@keyframes desplazarIzquierda {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+@keyframes desplazarDerecha {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
 }
 </style>
 
+<script>
+let timeoutPausa = null;
 
+// Iniciar con la animación hacia la izquierda por defecto al cargar la página
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById('sliderTrack').classList.add('animar-izquierda');
+});
 
-
-
-<section class="seccion-requisitos">
-    <h2 class="titulo-requisitos">Requisitos para el Servicio</h2>
-    <p class="subtitulo-requisitos">Para garantizar la seguridad de todos nuestros peludos, solicitamos lo siguiente:</p>
+function moverCarrusel(direccion) {
+    const slider = document.getElementById('sliderTrack');
+    const desplazamiento = 270; // 250px de ancho + 20px de gap
     
-    <div class="contenedor-requisitos">
-        <div class="card-requisito">
-            <i class="fas fa-birthday-cake"></i>
-            <h4>Edad Mínima</h4>
-            <p>Tu mascota debe tener al menos <strong>3 meses de edad</strong> para iniciar sus servicios de spa.</p>
-        </div>
+    // 1. Pausar la animación actual y congelar en la posición exacta donde está
+    const style = window.getComputedStyle(slider);
+    const matrix = new DOMMatrix(style.transform);
+    let currentX = matrix.m41;
+    
+    slider.style.animation = 'none';
+    slider.classList.remove('animar-izquierda', 'animar-derecha');
 
-        <div class="card-requisito">
-            <i class="fas fa-syringe"></i>
-            <h4>Vacunación</h4>
-            <p>Debe contar con el <strong>ciclo de vacunación completo</strong> para proteger su salud y la de los demás.</p>
-        </div>
+    // Cancelar cualquier temporizador anterior si el usuario hace clic varias veces seguidas
+    if (timeoutPausa) clearTimeout(timeoutPausa);
 
-        <div class="card-requisito">
-            <i class="fas fa-heartbeat"></i>
-            <h4>Salud</h4>
-            <p>Es indispensable que se encuentre en <strong>buen estado de salud</strong> general al momento de la cita.</p>
-        </div>
-    </div>
+    // 2. Mover la foto a la dirección elegida de forma fluida
+    // Si direccion es 1 (derecha), restamos; si es -1 (izquierda), sumamos
+    currentX += (direccion * desplazamiento);
 
-    <div class="nota-importante">
-        <p><i class="fas fa-exclamation-triangle"></i> <strong>Nota importante:</strong> Para mascotas agresivas o en estado de gestación, se requiere <strong>autorización previa del médico veterinario</strong> para realizar el servicio.</p>
-    </div>
-</section>
+    // Validar límites del bucle infinito (50%)
+    const totalWidth = slider.scrollWidth / 2;
+    if (currentX <= -totalWidth) {
+        currentX = 0;
+    } else if (currentX > 0) {
+        currentX = -totalWidth + desplazamiento;
+    }
+
+    slider.style.transition = 'transform 0.4s ease-in-out';
+    slider.style.transform = `translateX(${currentX}px)`;
+
+    // 3. Esperar 3 segundos estático en la foto actual, y luego reiniciar la animación automática hacia el lado correspondiente
+    timeoutPausa = setTimeout(() => {
+        slider.style.transition = 'none'; // Quitar transición para que el cambio de animación sea limpio
+        
+        // Asignar la nueva dirección del carrusel según la flecha presionada
+        // Si presionó derecha (1), el carrusel debe continuar hacia la izquierda (-50%). Si presionó izquierda (-1), debe continuar hacia la derecha (0).
+        if (direccion === 1) {
+            slider.classList.add('animar-izquierda');
+        } else {
+            slider.classList.add('animar-derecha');
+        }
+    }, 3000); // 3000 milisegundos = 3 segundos de pausa
+}
+</script>
        
         
             
@@ -1342,8 +1365,8 @@
                 <h3 class="titulo-rojo">CONTACTAR</h3>
                 <p>CALLE 15 N.13a-11,Chía Cundinamarca <br>
                 <a href="https://wa.me/573224022039">WHATSAPP: 3224022039</a>
-                HORARIO: LUNES - SABADO 9:00 A 8:30<br>
-                DOMINGOS Y FESTIVOS    9:30 A 8:30</p>
+                HORARIO: LUNES - SABADO 9:00 AM A 8:00 PM<br>
+                DOMINGOS Y FESTIVOS    9:30 AM A 8:00 PM</p>
                 
                 <!-- Redes sociales con los enlaces correctos -->
                 <div class="redes-sociales-container">
